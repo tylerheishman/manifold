@@ -2,7 +2,7 @@ create table if not exists
   txns (
     id text not null primary key,
     data jsonb not null,
-    fs_updated_time timestamp not null
+    fs_updated_time timestamp
   );
 
 alter table txns enable row level security;
