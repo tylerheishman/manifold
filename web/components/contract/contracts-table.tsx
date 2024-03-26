@@ -256,15 +256,15 @@ function ContractQuestion(props: {
   return (
     <Row className={clsx('gap-2 sm:gap-4', className)}>
       {!hideAvatar && (
-        <UserHovercard userId={contract.creatorId}>
-          <Avatar
-            username={contract.creatorUsername}
-            avatarUrl={contract.creatorAvatarUrl}
-            size="xs"
-            preventDefault={true}
-            className="mt-0.5"
-          />
-        </UserHovercard>
+        // <UserHovercard userId={contract.creatorId} key={contract.creatorId}>
+        <Avatar
+          username={contract.creatorUsername}
+          avatarUrl={contract.creatorAvatarUrl}
+          size="xs"
+          preventDefault={true}
+          className="mt-0.5"
+        />
+        // </UserHovercard>
       )}
       <div>
         <VisibilityIcon contract={contract} className="mr-1" />
@@ -283,17 +283,16 @@ function ContractAnswers(props: { contract: CPMMMultiContract }) {
   const { contract } = props
 
   return (
-    <div className="text-ink-700 grid grid-cols-[auto_3rem] self-end pl-8 sm:grid-cols-[auto_4rem] sm:pl-10 sm:pr-12">
+    <div className="text-ink-700 flex w-full gap-4 pl-8 pr-12 sm:pl-10">
       {sortAnswers(contract, contract.answers)
         .slice(0, 3)
         .map((ans) => (
-          <Fragment key={ans.id}>
-            <div className="line-clamp-1 pr-2 sm:pr-5">{ans.text}</div>
-            <div className={'w-[3ch] text-right font-semibold'}>
+          <div key={ans.id} className="flex w-[33%] gap-2">
+            <span className="truncate">{ans.text}</span>
+            <span className={'font-semibold'}>
               {formatPercentShort(ans.prob)}
-            </div>
-            {/* TODO: add number of traders? */}
-          </Fragment>
+            </span>
+          </div>
         ))}
     </div>
   )
